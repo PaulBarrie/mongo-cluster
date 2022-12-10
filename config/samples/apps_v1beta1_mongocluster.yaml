@@ -1,0 +1,12 @@
+apiVersion: apps.esgi.fr/v1beta1
+kind: MongoCluster
+metadata:
+  labels:
+    app.kubernetes.io/name: mongocluster
+    app.kubernetes.io/instance: mongocluster-sample
+    app.kubernetes.io/part-of: mongocluster
+    app.kuberentes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: mongocluster
+  name: mongocluster-sample
+spec:
+  # TODO(user): Add fields here

@@ -1,0 +1,27 @@
+# permissions for end users to view mongoclusters.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: mongocluster-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: mongocluster
+    app.kubernetes.io/part-of: mongocluster
+    app.kubernetes.io/managed-by: kustomize
+  name: mongocluster-viewer-role
+rules:
+- apiGroups:
+  - apps.esgi.fr
+  resources:
+  - mongoclusters
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - apps.esgi.fr
+  resources:
+  - mongoclusters/status
+  verbs:
+  - get

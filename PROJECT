@@ -1,0 +1,20 @@
+domain: esgi.fr
+layout:
+- go.kubebuilder.io/v3
+projectName: mongocluster
+repo: github.com/PaulBarrie/mongo-cluster
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: esgi.fr
+  group: apps
+  kind: MongoCluster
+  path: github.com/PaulBarrie/mongo-cluster/api/v1beta1
+  version: v1beta1
+  webhooks:
+    defaulting: true
+    validation: true
+    webhookVersion: v1
+version: "3"

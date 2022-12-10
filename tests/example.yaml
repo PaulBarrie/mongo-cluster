@@ -1,0 +1,21 @@
+kind: MongoCluster
+apiVersion: apps.esgi.fr/v1beta1
+metadata:
+  name: example1
+  namespace: default
+spec:
+  image: paulb314/mongo:4.2.3
+  replicas: 3
+  database: example
+  storage:
+    size: 1Gi
+    storageClassName: standard
+  resources:
+    cpu:
+      request: 100m
+      limit: 1000m
+    memory:
+      request: 128Mi
+      limit: 1Gi
+  auth:
+    password: password

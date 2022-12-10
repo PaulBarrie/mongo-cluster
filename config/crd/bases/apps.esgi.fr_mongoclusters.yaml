@@ -1,0 +1,102 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.9.2
+  creationTimestamp: null
+  name: mongoclusters.apps.esgi.fr
+spec:
+  group: apps.esgi.fr
+  names:
+    kind: MongoCluster
+    listKind: MongoClusterList
+    plural: mongoclusters
+    singular: mongocluster
+  scope: Namespaced
+  versions:
+  - name: v1beta1
+    schema:
+      openAPIV3Schema:
+        description: MongoCluster is the Schema for the mongoclusters API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: MongoClusterSpec defines the desired state of MongoCluster
+            properties:
+              auth:
+                properties:
+                  existingSecret:
+                    type: string
+                  password:
+                    type: string
+                type: object
+              database:
+                type: string
+              image:
+                type: string
+              replicas:
+                format: int32
+                type: integer
+              resources:
+                properties:
+                  cpu:
+                    description: Resource requests
+                    properties:
+                      limit:
+                        description: Memory resource requests and limits
+                        type: string
+                      request:
+                        description: Request resource requests and limits
+                        type: string
+                    required:
+                    - limit
+                    - request
+                    type: object
+                  memory:
+                    description: Resource limits
+                    properties:
+                      limit:
+                        description: Memory resource requests and limits
+                        type: string
+                      request:
+                        description: Request resource requests and limits
+                        type: string
+                    required:
+                    - limit
+                    - request
+                    type: object
+                required:
+                - cpu
+                - memory
+                type: object
+              storage:
+                properties:
+                  size:
+                    description: Size of the persistent volume claim
+                    type: string
+                  storageClassName:
+                    type: string
+                required:
+                - size
+                type: object
+            type: object
+          status:
+            description: MongoClusterStatus defines the observed state of MongoCluster
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
